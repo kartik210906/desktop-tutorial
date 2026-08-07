@@ -18,6 +18,7 @@ class Customer {
             cout << "Email: " << email << endl;
             cout << "Bought Items: " << bought_items << endl;
             cout << "Price: " << price << endl;
+            cout<< "------------------------" << endl;
         }
 
         void updateInfo(const string& n, int a, const string& e, const string& b, int p) {
@@ -46,61 +47,62 @@ class Customer {
 };
 
 int main() {
-    Customer c[10];
+    Customer c[50];
     int choice;
-    cout << "Enter your choice: ";
-    cout << "1. Insert Customer Info" << endl;
-    cout << "2. Update Customer Info" << endl;
-    cout << "3. Delete Customer Info" << endl;
-    cout << "4. Display Customer Info" << endl;
-    cout << "5. Exit" << endl;
-    cin >> choice;
-    int size=0;
+    int size=0,a,p,noOfCustomers, index;
+    string n,e,b;
     do{
+        cout << endl;
+        cout << "Customer Management System" << endl;
+        cout << "------------------------" << endl;
+        cout << "1. Insert Customer Info" << endl;
+        cout << "2. Update Customer Info" << endl;
+        cout << "3. Delete Customer Info" << endl;
+        cout << "4. Display Customer Info" << endl;
+        cout << "5. Exit" << endl;
+        cout << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+        cout << endl;
         switch (choice){
         case 1:{
-            int noOfCustomers;
             cout << "Enter the number of customers to insert: ";
             cin >> noOfCustomers;
             for (int i = 0; i < noOfCustomers; i++) {
-                string n;
-                int a;
-                string e;
-                string b;
-                int p;
                 cout << "Enter Customer Name: ";
-                cin >> n;
+                cin.ignore();
+                getline(cin, n);
                 cout << "Enter Customer Age: ";
                 cin >> a;
                 cout << "Enter Customer Email: ";
-                cin >> e;
+                cin.ignore();
+                getline(cin, e);
                 cout << "Enter Bought Items: ";
-                cin >> b;
+                cin.ignore();
+                getline(cin, b);
                 cout << "Enter Price: ";
                 cin >> p;
+                cout << endl;
                 c[size].insertInfo(n, a, e, b, p);
                 size++;
             }
             break;
         }
         case 2:{
-            int index;
             cout << "Enter the index of the customer to update: ";
             cin >> index;
             if (index >= 0 && index < size) {
-                string n;
-                int a;
-                string e;
-                string b;
-                int p;
                 cout << "Enter Updated Customer Name: ";
-                cin >> n;
+                cin.ignore();
+                getline(cin, n);
                 cout << "Enter Updated Customer Age: ";
                 cin >> a;
                 cout << "Enter Updated Customer Email: ";
-                cin >> e;
+                cin.ignore();
+                getline(cin, e);
                 cout << "Enter Updated Bought Items: ";
-                cin >> b;
+                cin.ignore();
+                getline(cin, b);
                 cout << "Enter Updated Price: ";
                 cin >> p;
                 c[index].updateInfo(n, a, e, b, p);
@@ -113,17 +115,20 @@ int main() {
         }
         case 3:{
             cout << "Enter the index of the customer to delete: ";
-            int index;
             cin >> index;
             if (index >= 0 && index < size) {
                 c[index].deleteInfo();
                 cout << "Customer info deleted." << endl;
+                c[index] = c[size - 1]; 
+                size--; 
             } else {
                 cout << "Invalid index!" << endl;
             }
             break;
         }
         case 4:{
+            cout << "Customer Information:" << endl;
+            cout << "------------------------" << endl;
             for (int i = 0; i < size; i++) {
                 cout << "Customer " << i + 1 << ":" << endl;
                 c[i].displayInfo();
@@ -132,9 +137,10 @@ int main() {
             break;
         }
         default:
-            cout << "Invalid choice!" << endl;
+            cout << "exiting the program." << endl;
             break;
         }
     }while(choice != 5);
     return 0;
 }
+//have done some modification in code after previous completion.
