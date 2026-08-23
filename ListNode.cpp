@@ -1,7 +1,6 @@
 #include <iostream>
 using namespace std;
 
-// Node class
 class ListNode {
 public:
     int data;
@@ -13,7 +12,6 @@ public:
     }
 };
 
-// Linked List class
 class LinkedList {
     ListNode* head;
 
@@ -22,14 +20,12 @@ public:
         head = nullptr;
     }
 
-    // Insert at beginning
     void insertBeginning(int value) {
         ListNode* n = new ListNode(value);
         n->next = head;
         head = n;
     }
 
-    // Insert at end
     void insertEnd(int value) {
         ListNode* n = new ListNode(value);
 
@@ -45,7 +41,6 @@ public:
         temp->next = n;
     }
 
-    // Insert at position
     void insertPosition(int value, int pos) {
         if (pos == 1) {
             insertBeginning(value);
@@ -67,7 +62,6 @@ public:
         temp->next = n;
     }
 
-    // Delete beginning
     void deleteBeginning() {
         if (head == nullptr) {
             cout << "List empty\n";
@@ -79,7 +73,6 @@ public:
         delete temp;
     }
 
-    // Delete end
     void deleteEnd() {
         if (head == nullptr) {
             cout << "List empty\n";
@@ -101,7 +94,6 @@ public:
         temp->next = nullptr;
     }
 
-    // Delete at position
     void deletePosition(int pos) {
         if (head == nullptr) {
             cout << "List empty\n";
