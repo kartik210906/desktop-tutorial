@@ -197,3 +197,257 @@ int main() {
     } while (choice != 0);
     return 0;
 }
+/*
+OUTPUT OFTHE CODE IS 
+====================
+1. Read sparse matrices And Convert to Triplets
+2. Add two sparse matrices
+3. Transpose a sparse matrix
+4. Multiply two sparse matrices
+5. Fast Transpose 
+0.Exit
+Enter your choice: 1
+
+Enter the number of rows and columns of the matrix: 
+1
+2
+Enter the elements of the matrix: 
+2
+3
+The entered matrix is: 
+2 3 
+
+Triplet Respresentation Is: 
+Row	Column	Value
+1	2	2
+0	0	2
+0	1	3
+
+1. Read sparse matrices And Convert to Triplets
+2. Add two sparse matrices
+3. Transpose a sparse matrix
+4. Multiply two sparse matrices
+5. Fast Transpose 
+0.Exit
+Enter your choice: 2
+
+Enter the first matrix: 
+Enter the number of rows and columns of the matrix: 
+1
+2
+Enter the elements of the matrix: 
+3
+5
+The entered matrix is: 
+3 5 
+
+Triplet Respresentation Is: 
+Row	Column	Value
+1	2	2
+0	0	3
+0	1	5
+
+Enter the second matrix: 
+Enter the number of rows and columns of the matrix: 
+2 1
+2
+Enter the elements of the matrix: 
+3
+4
+The entered matrix is: 
+3 4 
+
+Triplet Respresentation Is: 
+Row	Column	Value
+1	2	2
+0	0	3
+0	1	4
+
+The sum of the matrices is: 
+Row	Column	Value
+1	2	2
+0	0	6
+0	1	9
+
+1. Read sparse matrices And Convert to Triplets
+2. Add two sparse matrices
+3. Transpose a sparse matrix
+4. Multiply two sparse matrices
+5. Fast Transpose 
+0.Exit
+Enter your choice: 4 3
+
+Enter the number of rows and columns of the matrix: 
+1
+6
+Enter the elements of the matrix: 
+2
+2
+2
+3
+5
+0
+The entered matrix is: 
+2 2 2 3 5 0 
+
+Triplet Respresentation Is: 
+Row	Column	Value
+1	6	5
+0	0	2
+0	1	2
+0	2	2
+0	3	3
+0	4	5
+
+The transposed matrix is: 
+Row	Column	Value
+6	1	5
+0	0	2
+1	0	2
+2	0	2
+3	0	3
+4	0	5
+
+1. Read sparse matrices And Convert to Triplets
+2. Add two sparse matrices
+3. Transpose a sparse matrix
+4. Multiply two sparse matrices
+5. Fast Transpose 
+0.Exit
+Enter your choice: 4
+
+Enter first matrix: 
+Enter the number of rows and columns of the matrix: 
+2
+3
+Enter the elements of the matrix: 
+0
+
+0
+0
+
+9
+8
+6
+The entered matrix is: 
+0 0 0 
+9 8 6 
+
+Triplet Respresentation Is: 
+Row	Column	Value
+2	3	3
+1	0	9
+1	1	8
+1	2	6
+
+Enter second matrix: 
+Enter the number of rows and columns of the matrix: 
+3
+4
+Enter the elements of the matrix: 
+2
+4
+0
+4
+3
+0
+2
+0
+3
+0
+0
+0
+The entered matrix is: 
+2 4 0 4 
+3 0 2 0 
+3 0 0 0 
+
+Triplet Respresentation Is: 
+Row	Column	Value
+3	4	6
+0	0	2
+0	1	4
+0	3	4
+1	0	3
+1	2	2
+2	0	3
+
+The product of the matrices is: 
+Row	Column	Value
+2	4	19
+1	0	60
+1	0	60
+1	0	60
+1	1	36
+1	2	16
+1	3	36
+1	0	60
+1	0	60
+1	0	60
+1	1	36
+1	2	16
+1	3	36
+1	0	60
+1	0	60
+1	0	60
+1	1	36
+1	2	16
+1	3	36
+0	0	0
+
+1. Read sparse matrices And Convert to Triplets
+2. Add two sparse matrices
+3. Transpose a sparse matrix
+4. Multiply two sparse matrices
+5. Fast Transpose 
+0.Exit
+Enter your choice: 5
+
+Enter Your Matrix: 
+Enter the number of rows and columns of the matrix: 
+3
+3
+Enter the elements of the matrix: 
+1
+2
+0
+0
+30
+0
+
+3
+03
+0
+The entered matrix is: 
+1 2 0 
+0 30 0 
+3 3 0 
+
+Triplet Respresentation Is: 
+Row	Column	Value
+3	3	5
+0	0	1
+0	1	2
+1	1	30
+2	0	3
+2	1	3
+
+Transpose Using Fast Transpose Algorithm
+Row	Column	Value
+3	3	5
+0	0	1
+0	2	3
+1	0	2
+1	1	30
+1	2	3
+
+1. Read sparse matrices And Convert to Triplets
+2. Add two sparse matrices
+3. Transpose a sparse matrix
+4. Multiply two sparse matrices
+5. Fast Transpose 
+0.Exit
+Enter your choice: 0
+
+Invalid Choice !
+*/
