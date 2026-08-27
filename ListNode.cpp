@@ -1,264 +1,206 @@
 #include <iostream>
 using namespace std;
-
-class ListNode {
-public:
-    int data;
-    ListNode* next;
-
-    ListNode(int value) {
-        data = value;
-        next = nullptr;
-    }
+class Node{
+    public:
+        int data;
+        Node* next;
+        Node(int val){
+            data=val;
+            next=NULL;
+        }
 };
-
-class LinkedList {
-    ListNode* head;
-
-public:
-    LinkedList() {
-        head = nullptr;
+class List{
+    Node* head=NULL;
+    public:
+    void push_front(int val){
+        Node* newNode=new Node(val);
+        if (head==NULL){
+            head=newNode;
+        }else{
+            newNode->next=head;
+            head=newNode;
+        }
     }
-
-    void insertBeginning(int value) {
-        ListNode* n = new ListNode(value);
-        n->next = head;
-        head = n;
-    }
-
-    void insertEnd(int value) {
-        ListNode* n = new ListNode(value);
-
-        if (head == nullptr) {
-            head = n;
-            return;
-        }
-
-        ListNode* temp = head;
-        while (temp->next != nullptr)
-            temp = temp->next;
-
-        temp->next = n;
-    }
-
-    void insertPosition(int value, int pos) {
-        if (pos == 1) {
-            insertBeginning(value);
-            return;
-        }
-
-        ListNode* temp = head;
-
-        for (int i = 1; i < pos - 1 && temp != nullptr; i++)
-            temp = temp->next;
-
-        if (temp == nullptr) {
-            cout << "Invalid position\n";
-            return;
-        }
-
-        ListNode* n = new ListNode(value);
-        n->next = temp->next;
-        temp->next = n;
-    }
-
-    void deleteBeginning() {
-        if (head == nullptr) {
-            cout << "List empty\n";
-            return;
-        }
-
-        ListNode* temp = head;
-        head = head->next;
-        delete temp;
-    }
-
-    void deleteEnd() {
-        if (head == nullptr) {
-            cout << "List empty\n";
-            return;
-        }
-
-        if (head->next == nullptr) {
-            delete head;
-            head = nullptr;
-            return;
-        }
-
-        ListNode* temp = head;
-
-        while (temp->next->next != nullptr)
-            temp = temp->next;
-
-        delete temp->next;
-        temp->next = nullptr;
-    }
-
-    void deletePosition(int pos) {
-        if (head == nullptr) {
-            cout << "List empty\n";
-            return;
-        }
-
-        if (pos == 1) {
-            deleteBeginning();
-            return;
-        }
-
-        ListNode* temp = head;
-
-        for (int i = 1; i < pos - 1 && temp != nullptr; i++)
-            temp = temp->next;
-
-        if (temp == nullptr || temp->next == nullptr) {
-            cout << "Invalid position\n";
-            return;
-        }
-
-        ListNode* del = temp->next;
-        temp->next = del->next;
-        delete del;
-    }
-
-    // Search
-    void search(int value) {
-        ListNode* temp = head;
-        int pos = 1;
-
-        while (temp != nullptr) {
-            if (temp->data == value) {
-                cout << "Found at position " << pos << endl;
-                return;
+    void push_end(int val){
+        Node* temp=head;
+        Node* newNode=new Node(val);
+        if (head==NULL){
+            head=newNode;
+        }else{
+            while(temp->next!=NULL){
+                temp=temp->next;
             }
-            temp = temp->next;
-            pos++;
+            temp->next=newNode;
         }
-
-        cout << "Not found\n";
+    }
+    void push_pos(int val,int pos){
+        if (pos==1) push_front(val);
+        else if (pos==length()+1) push_end(val);
+        else{
+            Node* newNode=new Node(val);
+            Node* temp=head;
+            int count=1;
+            while (count!=pos-1){
+                temp=temp->next;
+                count++;
+            }
+            Node* t=temp->next;
+            temp->next=newNode;
+            newNode->next=t;
+        }
+    }
+    int length (){
+        Node* temp=head;
+        int l=0;
+        while(temp!=NULL){
+            temp=temp->next;
+            l++;
+        }
+        return l;
+    }
+    void displayList(){
+        Node* temp=head;
+        if (head==NULL){
+            cout<<"List Is Empty"<<endl;
+            return;
+            }
+        while(temp!=NULL){
+            cout<<temp->data<<"->";
+            temp=temp->next;
+        }
+        cout<<"NULL"<<endl;
+    }
+    void search(int val){
+        Node* temp=head;
+        if (head==NULL) 
+            cout << "Empty List"<<endl;
+        else{
+            while(temp!=NULL){
+                if (temp->data==val){
+                    cout<<"Element "<<val<<" Found !"<<endl;
+                    break;
+                }
+                temp=temp->next;
+            }
+            if(temp==NULL){
+                cout<<"Element "<<val<<" Not Found !"<<endl;
+            }
+        }
+    }
+    void del_front(){
+        if (head==NULL) cout<<"List Empty !!"<<endl;
+        else{
+            Node* temp=head;
+            head=temp->next;
+            delete temp;
+        }
+    }
+    void del_end(){
+        if (head==NULL) cout<<"List Empty !!"<<endl;
+        else{
+            Node* temp=head;
+            while(temp->next->next!=NULL){
+                temp=temp->next;
+            }
+            Node* t=temp->next;
+            temp->next=NULL;
+            delete t;
+        }
+    }
+    void del_pos(int pos){
+        if (pos==1) del_front();
+        else if (pos==length()+1) del_end();
+        else{
+            Node* temp=head;
+            int count=1;
+            while(count!=pos-1){
+                temp=temp->next;
+                count++;
+            }
+            Node* t=temp->next;
+            temp->next=t->next;
+            delete t;
+        }
     }
 
-    // Display
-    void display() {
-        ListNode* temp = head;
-
-        while (temp != nullptr) {
-            cout << temp->data << " -> ";
-            temp = temp->next;
-        }
-
-        cout << "NULL\n";
-    }
-
-    // Count
-    void count() {
-        int c = 0;
-        ListNode* temp = head;
-
-        while (temp != nullptr) {
-            c++;
-            temp = temp->next;
-        }
-
-        cout << "Nodes = " << c << endl;
-    }
-
-    // Reverse
-    void reverse() {
-        ListNode *prev = nullptr, *curr = head;
-
-        while (curr != nullptr) {
-            ListNode* next = curr->next;
-            curr->next = prev;
-            prev = curr;
-            curr = next;
-        }
-
-        head = prev;
-    }
 };
-
-int main() {
-    LinkedList list;
-    int choice, value, pos;
-
-    do {
-        cout << "\n--- LINKED LIST ---\n";
-        cout << "1. Insert Beginning\n";
-        cout << "2. Insert End\n";
-        cout << "3. Insert Position\n";
-        cout << "4. Delete Beginning\n";
-        cout << "5. Delete End\n";
-        cout << "6. Delete Position\n";
-        cout << "7. Search\n";
-        cout << "8. Display\n";
-        cout << "9. Count\n";
-        cout << "10. Reverse\n";
-        cout << "0. Exit\n";
-
-        cout << "Choice: ";
-        cin >> choice;
-
-        switch (choice) {
-
-        case 1:
-            cout << "Value: ";
-            cin >> value;
-            list.insertBeginning(value);
-            break;
-
-        case 2:
-            cout << "Value: ";
-            cin >> value;
-            list.insertEnd(value);
-            break;
-
-        case 3:
-            cout << "Value and position: ";
-            cin >> value >> pos;
-            list.insertPosition(value, pos);
-            break;
-
-        case 4:
-            list.deleteBeginning();
-            break;
-
-        case 5:
-            list.deleteEnd();
-            break;
-
-        case 6:
-            cout << "Position: ";
-            cin >> pos;
-            list.deletePosition(pos);
-            break;
-
-        case 7:
-            cout << "Value: ";
-            cin >> value;
-            list.search(value);
-            break;
-
-        case 8:
-            list.display();
-            break;
-
-        case 9:
-            list.count();
-            break;
-
-        case 10:
-            list.reverse();
-            break;
-
-        case 0:
-            cout << "Exit\n";
-            break;
-
-        default:
-            cout << "Invalid choice\n";
+int main (){
+    int choice,val,pos;
+    List l;
+    do{
+        cout<<"----------------------OPERATIONS----------------------"<<endl;
+        cout<<"1.Insert at Front\t\t2.Insert at Last"<<endl;
+        cout<<"3.Insert at Postion\t\t4.Delete at Front"<<endl;
+        cout<<"5.Delete at last\t\t6.Delete at Position "<<endl;
+        cout<<"7.Display List\t\t\t8.Search Element"<<endl;
+        cout<<"9.Length Of list\t\t0.Exit"<<endl;
+        cout<<"------------------------------------------------------"<<endl;
+        cout<<"Enter Your Choice :\n";
+        cin>>choice;
+        switch(choice){
+            case 1:
+                cout<<"Enter Value To insert at front : ";
+                cin>>val;
+                l.push_front(val);
+                cout<<"List After Insertion :";
+                l.displayList();
+                cout<<endl;
+                break;
+            case 2:
+                cout<<"Enter Value To insert at Last : ";
+                cin>>val;
+                l.push_end(val);
+                cout<<"List After Insertion :";
+                l.displayList();
+                cout<<endl;
+                break;
+            case 3:
+                cout<<"Enter Postion : ";
+                cin>>pos;
+                cout<<"Enter Value To insert at Postion : ";
+                cin>>val;
+                l.push_pos(pos,val);
+                cout<<"List After Insertion :";
+                l.displayList();
+                cout<<endl;
+                break;
+            case 4:
+                l.del_front();
+                cout<<"List After Deletion :";
+                l.displayList();
+                cout<<endl;
+                break;
+            case 5:
+                l.del_end();
+                cout<<"List After Deletion :";
+                l.displayList();
+                cout<<endl;
+                break;
+            case 6:
+                cout<<"Enter position or index u want to delete : ";
+                cin>>pos;
+                l.del_pos(pos);
+                cout<<"List After Deletion :";
+                l.displayList();
+                cout<<endl;
+                break;
+            case 7:
+                cout<<"Current list is : ";
+                l.displayList();
+                cout<<endl;
+                break;
+            case 8:
+                cout<<"Enter Value u want to search : ";
+                cin>>val;
+                l.search(val);
+                cout<<endl;
+                break;
+            case 9:
+                cout<<"Length of list is  : "<<l.length()<<endl;
+                cout<<endl;
+                break;
+            default:
+                cout<<"Invalid Choice !!"<<endl;
         }
-
-    } while (choice != 0);
-
-    return 0;
+    }while(choice!=0);
 }

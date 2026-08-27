@@ -151,7 +151,7 @@ public:
                 }
             }
         }
-        c[0].val = t;
+        c[0].val = t-1;
         cout << "The product of the matrices is: " << endl;
         displaySparse(c);
     }
