@@ -2,18 +2,24 @@
 using namespace std;
 class Node{
     public:
-        int data;
+        string name;
+        string company_name;
+        int salary;
+
         Node* next;
-        Node(int val){
-            data=val;
+
+        Node(string n,string cn,int s){
+            name=n;
+            company_name=cn;
+            salary=s;
             next=NULL;
         }
 };
 class List{
     Node* head=NULL;
     public:
-    void push_front(int val){
-        Node* newNode=new Node(val);
+    void push_front(string n,string cn,int s){
+        Node* newNode=new Node(n,cn,s);
         if (head==NULL){
             head=newNode;
         }else{
@@ -21,9 +27,9 @@ class List{
             head=newNode;
         }
     }
-    void push_end(int val){
+    void push_end(string n,string cn,int s){
         Node* temp=head;
-        Node* newNode=new Node(val);
+        Node* newNode=new Node(n,cn,s);
         if (head==NULL){
             head=newNode;
         }else{
@@ -33,11 +39,11 @@ class List{
             temp->next=newNode;
         }
     }
-    void push_pos(int val,int pos){
-        if (pos==1) push_front(val);
-        else if (pos==length()+1) push_end(val);
+    void push_pos(string n,string cn,int s,int pos){
+        if (pos==1) push_front(n,cn,s);
+        else if (pos==length()+1) push_end(n,cn,s);
         else{
-            Node* newNode=new Node(val);
+            Node* newNode=new Node(n,cn,s);
             Node* temp=head;
             int count=1;
             while (count!=pos-1){
@@ -65,25 +71,27 @@ class List{
             return;
             }
         while(temp!=NULL){
-            cout<<temp->data<<"->";
+            cout<<"\nName : "<<temp->name<<endl;
+            cout<<"Company's Name : "<<temp->company_name<<endl;
+            cout<<"Salary Offered : "<<temp->salary<<endl;
+            cout<<"\n";
             temp=temp->next;
         }
-        cout<<"NULL"<<endl;
     }
-    void search(int val){
+    void search(string n){
         Node* temp=head;
         if (head==NULL) 
             cout << "Empty List"<<endl;
         else{
             while(temp!=NULL){
-                if (temp->data==val){
-                    cout<<"Element "<<val<<" Found !"<<endl;
+                if (temp->name==n){
+                    cout<<"Data of "<<n<<" Found !"<<endl;
                     break;
                 }
                 temp=temp->next;
             }
             if(temp==NULL){
-                cout<<"Element "<<val<<" Not Found !"<<endl;
+                cout<<"Data of "<<n<<" Not Found !"<<endl;
             }
         }
     }
@@ -109,7 +117,7 @@ class List{
     }
     void del_pos(int pos){
         if (pos==1) del_front();
-        else if (pos==length()+1) del_end();
+        else if (pos==length()) del_end();
         else{
             Node* temp=head;
             int count=1;
@@ -125,7 +133,8 @@ class List{
 
 };
 int main (){
-    int choice,val,pos;
+    int choice,s,pos;
+    string n,cn;
     List l;
     do{
         cout<<"----------------------OPERATIONS----------------------"<<endl;
@@ -139,40 +148,46 @@ int main (){
         cin>>choice;
         switch(choice){
             case 1:
-                cout<<"Enter Value To insert at front : ";
-                cin>>val;
-                l.push_front(val);
-                cout<<"List After Insertion :";
+                cout<<"Enter DATA To insert at front : \n";
+                cout<<"Name : ";cin>>n;
+                cout<<"Company Name : ";cin>>cn;
+                cout<<"Salary Offered : ";cin>>s;
+                l.push_front(n,cn,s);
+                cout<<"\nList After Insertion :";
                 l.displayList();
                 cout<<endl;
                 break;
             case 2:
-                cout<<"Enter Value To insert at Last : ";
-                cin>>val;
-                l.push_end(val);
-                cout<<"List After Insertion :";
+                cout<<"Enter DATA To insert at Last : \n";
+                cout<<"Name : ";cin>>n;
+                cout<<"Company Name : ";cin>>cn;
+                cout<<"Salary Offered : ";cin>>s;
+                l.push_end(n,cn,s);
+                cout<<"\nList After Insertion :";
                 l.displayList();
                 cout<<endl;
                 break;
             case 3:
                 cout<<"Enter Postion : ";
                 cin>>pos;
-                cout<<"Enter Value To insert at Postion : ";
-                cin>>val;
-                l.push_pos(pos,val);
-                cout<<"List After Insertion :";
+                cout<<"Enter DATA To insert at Last : \n";
+                cout<<"Name : ";cin>>n;
+                cout<<"Company Name : ";cin>>cn;
+                cout<<"Salary Offered : ";cin>>s;
+                l.push_pos(n,cn,s,pos);
+                cout<<"\nList After Insertion :";
                 l.displayList();
                 cout<<endl;
                 break;
             case 4:
                 l.del_front();
-                cout<<"List After Deletion :";
+                cout<<"\nList After Deletion :";
                 l.displayList();
                 cout<<endl;
                 break;
             case 5:
                 l.del_end();
-                cout<<"List After Deletion :";
+                cout<<"\nList After Deletion :";
                 l.displayList();
                 cout<<endl;
                 break;
@@ -180,19 +195,19 @@ int main (){
                 cout<<"Enter position or index u want to delete : ";
                 cin>>pos;
                 l.del_pos(pos);
-                cout<<"List After Deletion :";
+                cout<<"\nList After Deletion :";
                 l.displayList();
                 cout<<endl;
                 break;
             case 7:
-                cout<<"Current list is : ";
+                cout<<"\nCurrent list is : ";
                 l.displayList();
                 cout<<endl;
                 break;
             case 8:
-                cout<<"Enter Value u want to search : ";
-                cin>>val;
-                l.search(val);
+                cout<<"\nEnter Name of std u want to search : ";
+                cin>>n;
+                l.search(n);
                 cout<<endl;
                 break;
             case 9:
@@ -202,5 +217,6 @@ int main (){
             default:
                 cout<<"Invalid Choice !!"<<endl;
         }
+        cin.ignore();
     }while(choice!=0);
 }
