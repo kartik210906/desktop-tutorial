@@ -91,3 +91,23 @@ int main(){
     cout<<"Dot Product : ";
     result.dis();
 }
+/*
+
+Enter 1st Vector :
+i : 2
+j : 3
+k : 5
+
+Enter 2nd Vector :
+i : 1
+j : 8
+k : 4
+
+Vector 1 : 2i+3j+5k
+Vector 2 : 1i+8j+4k
+
+Addition : 3i+11j+9k
+Subtraction : 1i+-5j+1k
+Dot Product : 2i+24j+20k
+
+*/
