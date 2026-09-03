@@ -130,6 +130,25 @@ class List{
             delete t;
         }
     }
+    void sort_list(){
+        Node* temp=head;
+        Node* t=head;
+        if (head==NULL) cout<<"List Empty !!"<<endl;
+        else{
+            while(temp!=NULL){
+                t=temp->next;
+                while(t!=NULL){
+                    if (temp->salary>t->salary){
+                        swap(temp->name,t->name);
+                        swap(temp->company_name,t->company_name);
+                        swap(temp->salary,t->salary);
+                    }
+                    t=t->next;
+                }
+                temp=temp->next;
+            }
+        }
+    }
 
 };
 int main (){
@@ -142,7 +161,8 @@ int main (){
         cout<<"3.Insert at Postion\t\t4.Delete at Front"<<endl;
         cout<<"5.Delete at last\t\t6.Delete at Position "<<endl;
         cout<<"7.Display List\t\t\t8.Search Element"<<endl;
-        cout<<"9.Length Of list\t\t0.Exit"<<endl;
+        cout<<"9.Length Of list\t\t10.Sort List"<<endl;
+        cout<<"0.Exit"<<endl;
         cout<<"------------------------------------------------------"<<endl;
         cout<<"Enter Your Choice :\n";
         cin>>choice;
@@ -214,6 +234,11 @@ int main (){
                 cout<<"Length of list is  : "<<l.length()<<endl;
                 cout<<endl;
                 break;
+            case 10:
+                l.sort_list();
+                cout<<"\nList After Sorting :";
+                l.displayList();
+                cout<<endl;
             default:
                 cout<<"Invalid Choice !!"<<endl;
         }
