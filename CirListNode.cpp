@@ -3,11 +3,13 @@ using namespace std;
 class CNode
 {
     public:
-	int data;
+	int quantity;
+	string type;
 	CNode *next;
-    CNode(int i)
+    CNode(int i,string s)
 	{
-		data=i;
+		quantity=i;
+		type=s;
 		next=nullptr;	
     }
 };
@@ -17,9 +19,9 @@ class CLL
 	CNode *head=nullptr;
 	CNode *tail=nullptr;
     public:
-	void placeOrder(int i)
+	void placeOrder(int i, string s)
 	{
-		CNode *temp = new CNode(i);
+		CNode *temp = new CNode(i, s);
 		if(head==nullptr)
 		{
 			head=temp;
@@ -32,37 +34,42 @@ class CLL
 			tail->next = temp;
 			tail = temp;
 		}
-        //cout<<temp<<" ==> "<<temp->data<<" ==> "<<tail->next;
-		cout<<"\nOrder Placed :- "<<temp->data<<" Pizza"<<endl;
+        //cout<<temp<<" ==> "<<temp->quantity<<" ==> "<<tail->next;
+		cout<<"\nOrder Placed :- "<<temp->quantity<<" "<<temp->type<<endl;
 	}
 
     void serveOrder()
     {
         CNode *temp;
         temp=head;
-        cout<<"Order Served for :- "<<temp->data<<" Pizza";
+        cout<<"Order Served for :- "<<temp->quantity<<" "<<temp->type<<endl;
         head=head->next;
         tail->next=head;
     }
     
 	void display()
 	{
-		CNode *temp;
-		cout<<"\nCurrent Orders Are :-"<<endl;
-		temp=head;
-		while(temp->next != head)
-		{
-			cout<<"Pizza = "<<temp->data<<" ==> ";
-			temp=temp->next;
-		}
-      cout<<"Pizza = "<<temp->data<<" ==> Null ";
+		CNode* temp=head;
+        if(head==nullptr)
+        {
+            cout<<"\nNo Orders to Display";
+            return;
+        }
+
+        while(temp->next!=head)
+        {
+            cout<<"\n"<<temp->quantity<<" "<<temp->type;
+            temp=temp->next;
+        }
+        cout<<"\n"<<temp->quantity<<" "<<temp->type<<endl;
 	}
 };
 
 int main()
 {
-    int choice,count=0;
+    int choice,count=0,choice1;
     int order;
+    string type;
     CLL c;
     do
     {
@@ -80,9 +87,21 @@ int main()
                 cout<<"\nOrders Full";
                 break;
             }
-            cout<<"\nEnter Order Number :- ";
+
+            cout<<"\nEnter Pizza Type :- ";
+            cout<<"\n1. Veg";
+            cout<<"\n2. Non-Veg"<<endl;
+            cin>>choice1;
+
+            if (choice1 == 1)
+                type = "Veg";
+            else
+                type = "Non-Veg";
+
+            cout<<"\nEnter Quantity :- ";
             cin>>order;
-            c.placeOrder(order);
+
+            c.placeOrder(order, type);
             count++;
             break;
         case 2:
