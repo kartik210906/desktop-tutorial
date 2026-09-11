@@ -239,9 +239,141 @@ int main (){
                 cout<<"\nList After Sorting :";
                 l.displayList();
                 cout<<endl;
+                break;
+            case 0:
+                cout<<"Exiting Program !!"<<endl;
+                break;
             default:
                 cout<<"Invalid Choice !!"<<endl;
         }
         cin.ignore();
     }while(choice!=0);
 }
+/*
+OUTPUT FOR PROGRAMM (NOT SHOWN EVERY CASE TO MAINTAIN SPACE) :
+----------------------OPERATIONS----------------------
+1.Insert at Front               2.Insert at Last
+3.Insert at Postion             4.Delete at Front
+5.Delete at last                6.Delete at Position 
+7.Display List                  8.Search Element
+9.Length Of list                10.Sort List
+0.Exit
+------------------------------------------------------
+Enter Your Choice :
+1
+Enter DATA To insert at front : 
+Name : kartik
+Company Name : cisco
+Salary Offered : 123
+
+List After Insertion :
+Name : kartik
+Company's Name : cisco
+Salary Offered : 123
+
+
+----------------------OPERATIONS----------------------
+1.Insert at Front               2.Insert at Last
+3.Insert at Postion             4.Delete at Front
+5.Delete at last                6.Delete at Position 
+7.Display List                  8.Search Element
+9.Length Of list                10.Sort List
+0.Exit
+------------------------------------------------------
+Enter Your Choice :
+2
+Enter DATA To insert at Last : 
+Name : harsh
+Company Name : ibm
+Salary Offered : 98
+
+List After Insertion :
+Name : kartik
+Company's Name : cisco
+Salary Offered : 123
+
+
+Name : harsh
+Company's Name : ibm
+Salary Offered : 98
+
+
+----------------------OPERATIONS----------------------
+1.Insert at Front               2.Insert at Last
+3.Insert at Postion             4.Delete at Front
+5.Delete at last                6.Delete at Position 
+7.Display List                  8.Search Element
+9.Length Of list                10.Sort List
+0.Exit
+------------------------------------------------------
+Enter Your Choice :
+10
+
+List After Sorting :
+Name : harsh
+Company's Name : ibm
+Salary Offered : 98
+
+
+Name : kartik
+Company's Name : cisco
+Salary Offered : 123
+
+
+----------------------OPERATIONS----------------------
+1.Insert at Front               2.Insert at Last
+3.Insert at Postion             4.Delete at Front
+5.Delete at last                6.Delete at Position 
+7.Display List                  8.Search Element
+9.Length Of list                10.Sort List
+0.Exit
+------------------------------------------------------
+Enter Your Choice :
+8
+
+Enter Name of std u want to search : kartik
+Data of kartik Found !
+
+----------------------OPERATIONS----------------------
+1.Insert at Front               2.Insert at Last
+3.Insert at Postion             4.Delete at Front
+5.Delete at last                6.Delete at Position 
+7.Display List                  8.Search Element
+9.Length Of list                10.Sort List
+0.Exit
+------------------------------------------------------
+Enter Your Choice :
+5
+
+List After Deletion :
+Name : harsh
+Company's Name : ibm
+Salary Offered : 98
+
+
+----------------------OPERATIONS----------------------
+1.Insert at Front               2.Insert at Last
+3.Insert at Postion             4.Delete at Front
+5.Delete at last                6.Delete at Position 
+7.Display List                  8.Search Element
+9.Length Of list                10.Sort List
+0.Exit
+------------------------------------------------------
+Enter Your Choice :
+4
+
+List After Deletion :List Is Empty
+
+----------------------OPERATIONS----------------------
+1.Insert at Front               2.Insert at Last
+3.Insert at Postion             4.Delete at Front
+5.Delete at last                6.Delete at Position 
+7.Display List                  8.Search Element
+9.Length Of list                10.Sort List
+0.Exit
+------------------------------------------------------
+Enter Your Choice :
+0
+Exiting Program !! 
+
+*/
