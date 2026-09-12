@@ -35,6 +35,9 @@ class DLL
                 head=newNode;
                 
             }
+
+            cout<<"List after insertion at front : "<<endl;
+            printForward();
         }
 
         
@@ -50,6 +53,8 @@ class DLL
                 tail=newNode;
             }
 
+            cout<<"List after insertion at end : "<<endl;
+            printForward();
         }
 
         void delFront(){
@@ -63,6 +68,8 @@ class DLL
                 delete temp;
 
             }
+            cout<<"List after deletion at front : "<<endl;
+            printForward();
         }
         
         void delEnd(){
@@ -76,7 +83,8 @@ class DLL
                 delete temp;
             
             }
-
+            cout<<"List after deletion at end : "<<endl;
+            printForward();
         }
 
         void buublesort(){
@@ -95,6 +103,8 @@ class DLL
                     temp=temp->next;
                 }
             }while(swapped);
+            cout<<"List after bubble sort : "<<endl;
+            printForward();
         }
 
         static DLL merge(const DLL& l1,const DLL& l2){
@@ -180,14 +190,14 @@ int main(){
                 cout<<"1. For List 1\n2. For List 2\n3. Go to Main menu"<<endl;
                 cin>>ch1;
 
-                if (ch>=3) break;
+                if (ch1>=3) break;
 
                 cout<<"Enter Val to Insert : ";
                 cin>>val;
 
-                if(ch==1){
+                if(ch1==1){
                     l1.insertFront(val);
-                }else if(ch==2){
+                }else if(ch1==2){
                     l2.insertFront(val);
                 }
                 break;
@@ -195,59 +205,59 @@ int main(){
             case 2:
                 cout<<"1. For List 1\n2. For List 2\n3. Go to Main menu"<<endl;
                 cin>>ch1;
-                if (ch>=3) break;
+                if (ch1>=3) break;
 
                 cout<<"Enter Val to Insert : ";
                 cin>>val;
                 
-                if(ch==1){
+                if(ch1==1){
                     l1.insertEnd(val);
-                }else if(ch==2){
+                }else if(ch1==2){
                     l2.insertEnd(val);
                 }
                 break;
             case 3:
                 cout<<"1. For List 1\n2. For List 2\n3. Go to Main menu"<<endl;
                 cin>>ch1;
-                if(ch==1){
+                if(ch1==1){
                     l1.delFront();
-                }else if(ch==2){
+                }else if(ch1==2){
                     l2.delFront();
                 }
                 break;
             case 4:
                 cout<<"1. For List 1\n2. For List 2\n3. Go to Main menu"<<endl;
                 cin>>ch1;
-                if(ch==1){
+                if(ch1==1){
                     l1.delEnd();
-                }else if(ch==2){
+                }else if(ch1==2){
                     l2.delEnd();
                 }
                 break;
             case 5:
                 cout<<"1. For List 1\n2. For List 2\n3. Go to Main menu"<<endl;
                 cin>>ch1;
-                if(ch==1){
+                if(ch1==1){
                     l1.printForward();
-                }else if(ch==2){
+                }else if(ch1==2){
                     l2.printForward();
                 }
                 break;
             case 6:
                 cout<<"1. For List 1\n2. For List 2\n3. Go to Main menu"<<endl;
                 cin>>ch1;
-                if(ch==1){
+                if(ch1==1){
                     l1.printBackward();
-                }else if(ch==2){
+                }else if(ch1==2){
                     l2.printBackward();
                 }
                 break;
             case 7:
                 cout<<"1. For List 1\n2. For List 2\n3. Go to Main menu"<<endl;
                 cin>>ch1;
-                if(ch==1){
+                if(ch1==1){
                     l1.buublesort();
-                }else if(ch==2){
+                }else if(ch1==2){
                     l2.buublesort();
                 }
                 break;
@@ -265,4 +275,3 @@ int main(){
     }while(ch!=9);
     
 }
-
