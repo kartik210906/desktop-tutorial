@@ -158,13 +158,111 @@ class DLL
 
 };
 int main(){
-    DLL l1,l2;
-    l1.insertEnd(1);
-    l1.insertEnd(78);
-    l1.insertEnd(99);
-    l2.insertEnd(2);
-    l2.insertEnd(4);
-    l2.insertEnd(9);
-    DLL l3= DLL::merge(l1,l2);
-    l3.printForward();
+    int ch,ch1,val;
+    DLL l1,l2,merged;
+    do{
+        cout<<"==============Main Menu=============="<<endl;
+        cout<<"1. Insert At Front"<<endl;
+        cout<<"2. Insert At End"<<endl;
+        cout<<"3. Delete At Front"<<endl;
+        cout<<"4. Delete At End"<<endl;
+        cout<<"5. Print Forward"<<endl;
+        cout<<"6. Print Backward"<<endl;
+        cout<<"7. Bubble Sort"<<endl;
+        cout<<"8. Merge Two Lists"<<endl;
+        cout<<"9. Exit"<<endl;
+        cout<<"====================================="<<endl;
+        cout<<"Enter Your Choice : ";
+        cin>>ch;
+
+        switch(ch){
+            case 1:
+                cout<<"1. For List 1\n2. For List 2\n3. Go to Main menu"<<endl;
+                cin>>ch1;
+
+                if (ch>=3) break;
+
+                cout<<"Enter Val to Insert : ";
+                cin>>val;
+
+                if(ch==1){
+                    l1.insertFront(val);
+                }else if(ch==2){
+                    l2.insertFront(val);
+                }
+                break;
+
+            case 2:
+                cout<<"1. For List 1\n2. For List 2\n3. Go to Main menu"<<endl;
+                cin>>ch1;
+                if (ch>=3) break;
+
+                cout<<"Enter Val to Insert : ";
+                cin>>val;
+                
+                if(ch==1){
+                    l1.insertEnd(val);
+                }else if(ch==2){
+                    l2.insertEnd(val);
+                }
+                break;
+            case 3:
+                cout<<"1. For List 1\n2. For List 2\n3. Go to Main menu"<<endl;
+                cin>>ch1;
+                if(ch==1){
+                    l1.delFront();
+                }else if(ch==2){
+                    l2.delFront();
+                }
+                break;
+            case 4:
+                cout<<"1. For List 1\n2. For List 2\n3. Go to Main menu"<<endl;
+                cin>>ch1;
+                if(ch==1){
+                    l1.delEnd();
+                }else if(ch==2){
+                    l2.delEnd();
+                }
+                break;
+            case 5:
+                cout<<"1. For List 1\n2. For List 2\n3. Go to Main menu"<<endl;
+                cin>>ch1;
+                if(ch==1){
+                    l1.printForward();
+                }else if(ch==2){
+                    l2.printForward();
+                }
+                break;
+            case 6:
+                cout<<"1. For List 1\n2. For List 2\n3. Go to Main menu"<<endl;
+                cin>>ch1;
+                if(ch==1){
+                    l1.printBackward();
+                }else if(ch==2){
+                    l2.printBackward();
+                }
+                break;
+            case 7:
+                cout<<"1. For List 1\n2. For List 2\n3. Go to Main menu"<<endl;
+                cin>>ch1;
+                if(ch==1){
+                    l1.buublesort();
+                }else if(ch==2){
+                    l2.buublesort();
+                }
+                break;
+            case 8:
+                l1.buublesort();
+                l2.buublesort();
+                merged= DLL::merge(l1,l2);
+                cout<<"Merged List : "<<endl;
+                merged.printForward();
+                break;
+            default:
+                cout<<"Invalid Choice !!"<<endl;
+        }
+
+    }while(ch!=9);
+    
 }
+
