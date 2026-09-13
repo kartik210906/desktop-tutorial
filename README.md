@@ -14,6 +14,7 @@ Currently, the repository includes programs related to:
 - Sparse Matrix
 - Customer Management System
 - Object-Oriented Programming
+- Doubly And Circular Linked List
 
 More assignments and practical programs will be added in the future.
 
@@ -25,6 +26,9 @@ More assignments and practical programs will be added in the future.
 | `Oops_Customer.cpp` | Customer Management System using OOP concepts |
 | `OperatorOverloading.cpp` | Demonstration of operator overloading with vectors |
 | `SparseMatrix.cpp` | Implementation and operations on sparse matrices |
+| `CirListNode.cpp` | Implementation and operations on Circular Linked List |
+| `DLL.cpp` | Implementation and operations on Doubly Linked List |
+
 
 ## 🛠️ Technologies
 
