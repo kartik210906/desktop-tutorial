@@ -34,7 +34,7 @@ class CLL
 			tail->next = temp;
 			tail = temp;
 		}
-        //cout<<temp<<" ==> "<<temp->quantity<<" ==> "<<tail->next;
+        
 		cout<<"\nOrder Placed :- "<<temp->quantity<<" "<<temp->type<<endl;
 	}
 
@@ -42,9 +42,25 @@ class CLL
     {
         CNode *temp;
         temp=head;
-        cout<<"Order Served for :- "<<temp->quantity<<" "<<temp->type<<endl;
-        head=head->next;
-        tail->next=head;
+        if(head==nullptr)
+        {
+            cout<<"\nNo Orders to Serve";
+            return;
+        }
+        else if(head==tail)
+        {
+            cout<<"\nOrder Served :- "<<temp->quantity<<" "<<temp->type<<endl;
+            head=nullptr;
+            tail=nullptr;
+            delete temp;
+        }
+        else
+        {
+            cout<<"\nOrder Served :- "<<temp->quantity<<" "<<temp->type<<endl;
+            head=head->next;
+            tail->next=head;
+            delete temp;
+        }
     }
     
 	void display()
@@ -73,10 +89,12 @@ int main()
     CLL c;
     do
     {
+        cout<<"\n--------------------";
         cout<<"\n1. Place Order";
         cout<<"\n2. Serve Order";
         cout<<"\n3. Display Orders";
         cout<<"\n4. Exit";
+        cout<<"\n--------------------";
         cout<<"\nEnter Your Choice :- ";
         cin>>choice;
         switch (choice)
@@ -105,11 +123,6 @@ int main()
             count++;
             break;
         case 2:
-            if (count == 0)
-            {
-                cout<<"\nNo Orders to Serve";
-                break;
-            }
             c.serveOrder();
             count--;
             break;
@@ -122,3 +135,269 @@ int main()
 }while(choice!=4);
     
 }
+/*
+    OUTPUT FOR PROGRAM:
+    
+    --------------------
+    1. Place Order
+    2. Serve Order
+    3. Display Orders
+    4. Exit
+    --------------------
+    Enter Your Choice :- 1
+
+    Enter Pizza Type :- 
+    1. Veg
+    2. Non-Veg
+    1
+
+    Enter Quantity :- 21
+
+    Order Placed :- 21 Veg
+
+    --------------------
+    1. Place Order
+    2. Serve Order
+    3. Display Orders
+    4. Exit
+    --------------------
+    Enter Your Choice :- 1
+
+    Enter Pizza Type :- 
+    1. Veg
+    2. Non-Veg
+    2
+
+    Enter Quantity :- 32
+
+    Order Placed :- 32 Non-Veg
+
+    --------------------
+    1. Place Order
+    2. Serve Order
+    3. Display Orders
+    4. Exit
+    --------------------
+    Enter Your Choice :- 1
+
+    Enter Pizza Type :- 
+    1. Veg
+    2. Non-Veg
+    1
+
+    Enter Quantity :- 23
+
+    Order Placed :- 23 Veg
+
+    --------------------
+    1. Place Order
+    2. Serve Order
+    3. Display Orders
+    4. Exit
+    --------------------
+    Enter Your Choice :- 1
+
+    Enter Pizza Type :- 
+    1. Veg
+    2. Non-Veg
+    1
+
+    Enter Quantity :- 11
+
+    Order Placed :- 11 Veg
+
+    --------------------
+    1. Place Order
+    2. Serve Order
+    3. Display Orders
+    4. Exit
+    --------------------
+    Enter Your Choice :- 1
+
+    Enter Pizza Type :- 
+    1. Veg
+    2. Non-Veg
+    2
+
+    Enter Quantity :- 22
+
+    Order Placed :- 22 Non-Veg
+
+    --------------------
+    1. Place Order
+    2. Serve Order
+    3. Display Orders
+    4. Exit
+    --------------------
+    Enter Your Choice :- 1
+
+    Orders Full
+    --------------------
+    1. Place Order
+    2. Serve Order
+    3. Display Orders
+    4. Exit
+    --------------------
+    Enter Your Choice :- 2
+
+    Order Served :- 21 Veg
+
+    --------------------
+    1. Place Order
+    2. Serve Order
+    3. Display Orders
+    4. Exit
+    --------------------
+    Enter Your Choice :- 1
+
+    Enter Pizza Type :- 
+    1. Veg
+    2. Non-Veg
+    1 
+
+    Enter Quantity :- 23
+
+    Order Placed :- 23 Veg
+
+    --------------------
+    1. Place Order
+    2. Serve Order
+    3. Display Orders
+    4. Exit
+    --------------------
+    Enter Your Choice :- 1
+
+    Orders Full
+    --------------------
+    1. Place Order
+    2. Serve Order
+    3. Display Orders
+    4. Exit
+    --------------------
+    Enter Your Choice :- 3
+
+    32 Non-Veg
+    23 Veg
+    11 Veg
+    22 Non-Veg
+    23 Veg
+
+    --------------------
+    1. Place Order
+    2. Serve Order
+    3. Display Orders
+    4. Exit
+    --------------------
+    Enter Your Choice :- 2
+
+    Order Served :- 32 Non-Veg
+
+    --------------------
+    1. Place Order
+    2. Serve Order
+    3. Display Orders
+    4. Exit
+    --------------------
+    Enter Your Choice :- 3
+
+    23 Veg
+    11 Veg
+    22 Non-Veg
+    23 Veg
+
+    --------------------
+    1. Place Order
+    2. Serve Order
+    3. Display Orders
+    4. Exit
+    --------------------
+    Enter Your Choice :- 2
+
+    Order Served :- 23 Veg
+
+    --------------------
+    1. Place Order
+    2. Serve Order
+    3. Display Orders
+    4. Exit
+    --------------------
+    Enter Your Choice :- 2
+
+    Order Served :- 11 Veg
+
+    --------------------
+    1. Place Order
+    2. Serve Order
+    3. Display Orders
+    4. Exit
+    --------------------
+    Enter Your Choice :- 2
+
+    Order Served :- 22 Non-Veg
+
+    --------------------
+    1. Place Order
+    2. Serve Order
+    3. Display Orders
+    4. Exit
+    --------------------
+    Enter Your Choice :- 2
+
+    Order Served :- 23 Veg
+
+    --------------------
+    1. Place Order
+    2. Serve Order
+    3. Display Orders
+    4. Exit
+    --------------------
+    Enter Your Choice :- 2
+
+    No Orders to Serve
+    --------------------
+    1. Place Order
+    2. Serve Order
+    3. Display Orders
+    4. Exit
+    --------------------
+    Enter Your Choice :- 3
+
+    No Orders to Display
+    --------------------
+    1. Place Order
+    2. Serve Order
+    3. Display Orders
+    4. Exit
+    --------------------
+    Enter Your Choice :- 1
+
+    Enter Pizza Type :- 
+    1. Veg
+    2. Non-Veg
+    1
+
+    Enter Quantity :- 43
+
+    Order Placed :- 43 Veg
+
+    --------------------
+    1. Place Order
+    2. Serve Order
+    3. Display Orders
+    4. Exit
+    --------------------
+    Enter Your Choice :- 3
+
+    43 Veg
+
+    --------------------
+    1. Place Order
+    2. Serve Order
+    3. Display Orders
+    4. Exit
+    --------------------
+    Enter Your Choice :- 4
+
+    Invalid Choice
+
+*/
