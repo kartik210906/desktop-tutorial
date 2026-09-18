@@ -1,5 +1,4 @@
 #include <iostream>
-#include<string>
 using namespace std;
 class  Node{
     public:
@@ -18,34 +17,13 @@ class DLL
     Node* head=NULL;
     Node* tail=NULL;
     public:
-        void insertFront(int i){
-            
-            Node* newNode=new Node(i);
-            
-            if(!head && !tail){
-                head=newNode;
-                tail=newNode;
-                newNode->next=tail;
-                newNode->prv=NULL;
-            }
-            else{
-
-                newNode->next=head;
-                head->prv=newNode;
-                head=newNode;
-                
-            }
-
-            cout<<"List after insertion at front : "<<endl;
-            printForward();
-        }
-
         
         void insertEnd(int i){
             
             Node* newNode=new Node(i);
             if(tail==NULL){
-                insertFront(i);
+                head=newNode;
+                tail=newNode;
             }
             else{
                 tail->next=newNode;
@@ -53,36 +31,21 @@ class DLL
                 tail=newNode;
             }
 
-            cout<<"List after insertion at end : "<<endl;
-            printForward();
         }
 
-        void delFront(){
-            if(head==NULL){
-                cout<<"List Is Empty !"<<endl;
-            }else{
-
-                Node* temp=head;
-                head=head->next;
-                head->prv=NULL;
-                delete temp;
-
-            }
-            cout<<"List after deletion at front : "<<endl;
-            printForward();
-        }
-        
         void delEnd(){
             Node* temp=tail;
             if(tail==NULL){
                 cout<<"List is Empty !"<<endl;
+                return;
+            }else if(head==tail){
+                head=NULL;
+                tail=NULL;
             }else{
-
                 tail=tail->prv;
                 tail->next=NULL;
-                delete temp;
-            
             }
+            delete temp;
             cout<<"List after deletion at end : "<<endl;
             printForward();
         }
@@ -168,110 +131,151 @@ class DLL
 
 };
 int main(){
-    int ch,ch1,val;
     DLL l1,l2,merged;
+    int choice,n,val,choice2;
     do{
-        cout<<"==============Main Menu=============="<<endl;
-        cout<<"1. Insert At Front"<<endl;
-        cout<<"2. Insert At End"<<endl;
-        cout<<"3. Delete At Front"<<endl;
-        cout<<"4. Delete At End"<<endl;
-        cout<<"5. Print Forward"<<endl;
-        cout<<"6. Print Backward"<<endl;
-        cout<<"7. Bubble Sort"<<endl;
-        cout<<"8. Merge Two Lists"<<endl;
-        cout<<"9. Exit"<<endl;
-        cout<<"====================================="<<endl;
-        cout<<"Enter Your Choice : ";
-        cin>>ch;
+        cout<<"--------------------------------"<<endl;
+        cout<<"1.Enter n number of marks :"<<endl;
+        cout<<"2.Enter marks at end of list :"<<endl;
+        cout<<"3.Delete marks at end of list :"<<endl;
+        cout<<"4.Print List Of marks Forward :"<<endl;
+        cout<<"5.Print List Of marks Backward :"<<endl;
+        cout<<"6.Sort List Of Marks :"<<endl;
+        cout<<"7.Merge Sort Lists Of Marks :"<<endl;
+        cout<<"0.Exit"<<endl;
+        cout<<"--------------------------------"<<endl;
 
-        switch(ch){
+        cin>>choice;
+        
+        switch(choice){
             case 1:
-                cout<<"1. For List 1\n2. For List 2\n3. Go to Main menu"<<endl;
-                cin>>ch1;
-
-                if (ch1>=3) break;
-
-                cout<<"Enter Val to Insert : ";
-                cin>>val;
-
-                if(ch1==1){
-                    l1.insertFront(val);
-                }else if(ch1==2){
-                    l2.insertFront(val);
+                cout<<"\nList u want to do operation on :"<<endl;
+                cout<<"1. List 1"<<endl;
+                cout<<"2. List 2"<<endl;
+                cout<<"3. Goto main menu"<<endl;
+                cin>>choice2;
+                if (choice2>=3){
+                    break;
                 }
-                break;
 
+                cout<<"\nEnter No.Of Marks u want to enter: "<<endl;
+                cin>>n;
+                cout<<"Enter "<<n<<" Values :"<<endl;
+
+                for(int i=0;i<n;i++){
+                    cin>>val;
+                    if (choice2==1){
+                        l1.insertEnd(val);
+                    }else if(choice2==2){
+                        l2.insertEnd(val);
+                    }
+                }
+                if (choice2==1){
+                        cout<<"After Inseration :"<<endl;
+                        l1.printForward();
+
+                    }else if(choice2==2){
+                        cout<<"After Inseration :"<<endl;
+                        l2.printForward();
+                    }
+                break;
+            
             case 2:
-                cout<<"1. For List 1\n2. For List 2\n3. Go to Main menu"<<endl;
-                cin>>ch1;
-                if (ch1>=3) break;
-
-                cout<<"Enter Val to Insert : ";
-                cin>>val;
+                cout<<"\nList u want to do operation on :"<<endl;
+                cout<<"1. List 1"<<endl;
+                cout<<"2. List 2"<<endl;
+                cout<<"3. Goto main menu"<<endl;
+                cin>>choice2;
                 
-                if(ch1==1){
+                if (choice2==1){
+                    cout<<"Enter marks to Enter at end :"<<endl;
+                    cin>>val;
                     l1.insertEnd(val);
-                }else if(ch1==2){
-                    l2.insertEnd(val);
+                    cout<<"After Inseration :"<<endl;
+                    l1.printForward();
                 }
+                else if (choice2==2){
+                    cout<<"Enter marks to Enter at end :"<<endl;
+                    cin>>val;
+                    l2.insertEnd(val);
+                    cout<<"After Inseration :"<<endl;
+                    l2.printForward();
+                }
+                
                 break;
+            
             case 3:
-                cout<<"1. For List 1\n2. For List 2\n3. Go to Main menu"<<endl;
-                cin>>ch1;
-                if(ch1==1){
-                    l1.delFront();
-                }else if(ch1==2){
-                    l2.delFront();
+                cout<<"\nList u want to do operation on :"<<endl;
+                cout<<"1. List 1"<<endl;
+                cout<<"2. List 2"<<endl;
+                cout<<"3. Goto main menu"<<endl;
+                cin>>choice2;
+                if (choice2==1){
+                    l1.delEnd();
+                }else if(choice2==2){
+                    l2.delEnd();
+                }else{
+                    cout<<"Invalid Choice "<<endl;
                 }
                 break;
             case 4:
-                cout<<"1. For List 1\n2. For List 2\n3. Go to Main menu"<<endl;
-                cin>>ch1;
-                if(ch1==1){
-                    l1.delEnd();
-                }else if(ch1==2){
-                    l2.delEnd();
-                }
-                break;
-            case 5:
-                cout<<"1. For List 1\n2. For List 2\n3. Go to Main menu"<<endl;
-                cin>>ch1;
-                if(ch1==1){
+                cout<<"\nList u want to do operation on :"<<endl;
+                cout<<"1. List 1"<<endl;
+                cout<<"2. List 2"<<endl;
+                cout<<"3. Goto main menu"<<endl;
+                cin>>choice2;
+                
+                if (choice2==1){
                     l1.printForward();
-                }else if(ch1==2){
+                }
+                else if (choice2==2){
                     l2.printForward();
                 }
+                
                 break;
-            case 6:
-                cout<<"1. For List 1\n2. For List 2\n3. Go to Main menu"<<endl;
-                cin>>ch1;
-                if(ch1==1){
+                
+            case 5:
+                cout<<"\nList u want to do operation on :"<<endl;
+                cout<<"1. List 1"<<endl;
+                cout<<"2. List 2"<<endl;
+                cout<<"3. Goto main menu"<<endl;
+                cin>>choice2;
+                
+                if (choice2==1){
                     l1.printBackward();
-                }else if(ch1==2){
+                }
+                else if (choice2==2){
                     l2.printBackward();
                 }
                 break;
-            case 7:
-                cout<<"1. For List 1\n2. For List 2\n3. Go to Main menu"<<endl;
-                cin>>ch1;
-                if(ch1==1){
+            
+            case 6:
+                cout<<"List u want to do operation on :"<<endl;
+                cout<<"1. List 1"<<endl;
+                cout<<"2. List 2"<<endl;
+                cout<<"3. Goto main menu"<<endl;
+                cin>>choice2;
+                
+                if (choice2==1){
                     l1.buublesort();
-                }else if(ch1==2){
+                }
+                else if (choice2==2){
                     l2.buublesort();
                 }
                 break;
-            case 8:
+            case 7:
                 l1.buublesort();
                 l2.buublesort();
-                merged= DLL::merge(l1,l2);
-                cout<<"Merged List : "<<endl;
+                merged=DLL::merge(l1,l2);
+                cout<<"List after Merging :"<<endl;
                 merged.printForward();
                 break;
             default:
                 cout<<"Invalid Choice !!"<<endl;
+
         }
 
-    }while(ch!=9);
+
+    }while(choice!=0);
     
 }
