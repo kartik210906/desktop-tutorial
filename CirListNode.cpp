@@ -10,15 +10,28 @@ class CNode
 	{
 		quantity=i;
 		type=s;
-		next=nullptr;	
+		next=nullptr;
     }
 };
 
 class CLL
 {
 	CNode *head=nullptr;
-	CNode *tail=nullptr;
+
     public:
+    
+    CNode* getTail()
+    {
+        if(head==nullptr){
+            return nullptr;
+        }
+        CNode* temp=head;
+        while(temp->next!=head){
+            temp=temp->next;
+        }
+        return temp;
+    }
+
 	void placeOrder(int i, string s)
 	{
 		CNode *temp = new CNode(i, s);
@@ -26,12 +39,12 @@ class CLL
 		{
 			head=temp;
 			head->next = head;
-			tail=head;
 		}
 		else
 		{
-			temp->next = tail->next;
+            CNode* tail = getTail();
 			tail->next = temp;
+			temp->next = head;
 			tail = temp;
 		}
         
@@ -40,24 +53,24 @@ class CLL
 
     void serveOrder()
     {
-        CNode *temp;
-        temp=head;
         if(head==nullptr)
         {
             cout<<"\nNo Orders to Serve";
             return;
         }
-        else if(head==tail)
+        else if(head->next==head)
         {
+            CNode *temp = head;
             cout<<"\nOrder Served :- "<<temp->quantity<<" "<<temp->type<<endl;
             head=nullptr;
-            tail=nullptr;
             delete temp;
         }
         else
         {
+            CNode *temp = head;
             cout<<"\nOrder Served :- "<<temp->quantity<<" "<<temp->type<<endl;
             head=head->next;
+            CNode* tail = getTail();
             tail->next=head;
             delete temp;
         }
@@ -83,10 +96,12 @@ class CLL
 
 int main()
 {
-    int choice,count=0,choice1;
+    int choice,count=0,choice1,maxOrders;
     int order;
     string type;
     CLL c;
+    cout<<"\nEnter Maximum Orders :- ";
+    cin>>maxOrders;
     do
     {
         cout<<"\n--------------------";
@@ -100,7 +115,7 @@ int main()
         switch (choice)
         {
             case 1:
-            if (count==5)
+            if (count==maxOrders)
             {
                 cout<<"\nOrders Full";
                 break;
@@ -111,11 +126,14 @@ int main()
             cout<<"\n2. Non-Veg"<<endl;
             cin>>choice1;
 
-            if (choice1 == 1)
+            if (choice1 == 1){
                 type = "Veg";
-            else
+            }else if (choice1==2){
                 type = "Non-Veg";
-
+            }else{
+                cout<<"Invalid Choice"<<endl;
+                break;
+            }
             cout<<"\nEnter Quantity :- ";
             cin>>order;
 
@@ -123,6 +141,10 @@ int main()
             count++;
             break;
         case 2:
+            if (count==0){
+                cout<<"No orders to serve"<<endl;
+                break;
+            }
             c.serveOrder();
             count--;
             break;
@@ -135,269 +157,3 @@ int main()
 }while(choice!=4);
     
 }
-/*
-    OUTPUT FOR PROGRAM:
-    
-    --------------------
-    1. Place Order
-    2. Serve Order
-    3. Display Orders
-    4. Exit
-    --------------------
-    Enter Your Choice :- 1
-
-    Enter Pizza Type :- 
-    1. Veg
-    2. Non-Veg
-    1
-
-    Enter Quantity :- 21
-
-    Order Placed :- 21 Veg
-
-    --------------------
-    1. Place Order
-    2. Serve Order
-    3. Display Orders
-    4. Exit
-    --------------------
-    Enter Your Choice :- 1
-
-    Enter Pizza Type :- 
-    1. Veg
-    2. Non-Veg
-    2
-
-    Enter Quantity :- 32
-
-    Order Placed :- 32 Non-Veg
-
-    --------------------
-    1. Place Order
-    2. Serve Order
-    3. Display Orders
-    4. Exit
-    --------------------
-    Enter Your Choice :- 1
-
-    Enter Pizza Type :- 
-    1. Veg
-    2. Non-Veg
-    1
-
-    Enter Quantity :- 23
-
-    Order Placed :- 23 Veg
-
-    --------------------
-    1. Place Order
-    2. Serve Order
-    3. Display Orders
-    4. Exit
-    --------------------
-    Enter Your Choice :- 1
-
-    Enter Pizza Type :- 
-    1. Veg
-    2. Non-Veg
-    1
-
-    Enter Quantity :- 11
-
-    Order Placed :- 11 Veg
-
-    --------------------
-    1. Place Order
-    2. Serve Order
-    3. Display Orders
-    4. Exit
-    --------------------
-    Enter Your Choice :- 1
-
-    Enter Pizza Type :- 
-    1. Veg
-    2. Non-Veg
-    2
-
-    Enter Quantity :- 22
-
-    Order Placed :- 22 Non-Veg
-
-    --------------------
-    1. Place Order
-    2. Serve Order
-    3. Display Orders
-    4. Exit
-    --------------------
-    Enter Your Choice :- 1
-
-    Orders Full
-    --------------------
-    1. Place Order
-    2. Serve Order
-    3. Display Orders
-    4. Exit
-    --------------------
-    Enter Your Choice :- 2
-
-    Order Served :- 21 Veg
-
-    --------------------
-    1. Place Order
-    2. Serve Order
-    3. Display Orders
-    4. Exit
-    --------------------
-    Enter Your Choice :- 1
-
-    Enter Pizza Type :- 
-    1. Veg
-    2. Non-Veg
-    1 
-
-    Enter Quantity :- 23
-
-    Order Placed :- 23 Veg
-
-    --------------------
-    1. Place Order
-    2. Serve Order
-    3. Display Orders
-    4. Exit
-    --------------------
-    Enter Your Choice :- 1
-
-    Orders Full
-    --------------------
-    1. Place Order
-    2. Serve Order
-    3. Display Orders
-    4. Exit
-    --------------------
-    Enter Your Choice :- 3
-
-    32 Non-Veg
-    23 Veg
-    11 Veg
-    22 Non-Veg
-    23 Veg
-
-    --------------------
-    1. Place Order
-    2. Serve Order
-    3. Display Orders
-    4. Exit
-    --------------------
-    Enter Your Choice :- 2
-
-    Order Served :- 32 Non-Veg
-
-    --------------------
-    1. Place Order
-    2. Serve Order
-    3. Display Orders
-    4. Exit
-    --------------------
-    Enter Your Choice :- 3
-
-    23 Veg
-    11 Veg
-    22 Non-Veg
-    23 Veg
-
-    --------------------
-    1. Place Order
-    2. Serve Order
-    3. Display Orders
-    4. Exit
-    --------------------
-    Enter Your Choice :- 2
-
-    Order Served :- 23 Veg
-
-    --------------------
-    1. Place Order
-    2. Serve Order
-    3. Display Orders
-    4. Exit
-    --------------------
-    Enter Your Choice :- 2
-
-    Order Served :- 11 Veg
-
-    --------------------
-    1. Place Order
-    2. Serve Order
-    3. Display Orders
-    4. Exit
-    --------------------
-    Enter Your Choice :- 2
-
-    Order Served :- 22 Non-Veg
-
-    --------------------
-    1. Place Order
-    2. Serve Order
-    3. Display Orders
-    4. Exit
-    --------------------
-    Enter Your Choice :- 2
-
-    Order Served :- 23 Veg
-
-    --------------------
-    1. Place Order
-    2. Serve Order
-    3. Display Orders
-    4. Exit
-    --------------------
-    Enter Your Choice :- 2
-
-    No Orders to Serve
-    --------------------
-    1. Place Order
-    2. Serve Order
-    3. Display Orders
-    4. Exit
-    --------------------
-    Enter Your Choice :- 3
-
-    No Orders to Display
-    --------------------
-    1. Place Order
-    2. Serve Order
-    3. Display Orders
-    4. Exit
-    --------------------
-    Enter Your Choice :- 1
-
-    Enter Pizza Type :- 
-    1. Veg
-    2. Non-Veg
-    1
-
-    Enter Quantity :- 43
-
-    Order Placed :- 43 Veg
-
-    --------------------
-    1. Place Order
-    2. Serve Order
-    3. Display Orders
-    4. Exit
-    --------------------
-    Enter Your Choice :- 3
-
-    43 Veg
-
-    --------------------
-    1. Place Order
-    2. Serve Order
-    3. Display Orders
-    4. Exit
-    --------------------
-    Enter Your Choice :- 4
-
-    Invalid Choice
-
-*/
