@@ -28,6 +28,7 @@ More assignments and practical programs will be added in the future.
 | `SparseMatrix.cpp` | Implementation and operations on sparse matrices |
 | `CirListNode.cpp` | Implementation and operations on Circular Linked List |
 | `DLL.cpp` | Implementation and operations on Doubly Linked List |
+| `Practical 4 DYNAMIC MEMORY.cpp` | Implementation and operations on Dynamic memory allocation |
 
 
 ## 🛠️ Technologies
