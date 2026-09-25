@@ -22,8 +22,10 @@ class stack{
             if (ch=='+' || ch=='-') return 1;
             return 0;
         }
+        
 };
 int main() {
+    stack s;
     
     return 0;
 }
