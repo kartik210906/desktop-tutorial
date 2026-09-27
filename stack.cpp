@@ -22,6 +22,25 @@ class stack{
             if (ch=='+' || ch=='-') return 1;
             return 0;
         }
+        char peek(){
+            return arr[top];
+        }
+        void infixToPost(string s){
+            string post;
+            char ch;
+            for(int i=0;i<s.size();i++){
+                ch=s[i];
+                if (!isalnum(ch) || ch=='('){
+                    if (priority(peek())>priority(ch)){
+                        push(ch);
+                    }else{
+                        
+                    }
+                }
+                post+=ch;
+
+            }
+        }
         
 };
 int main() {
