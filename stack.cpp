@@ -206,3 +206,64 @@ int main() {
 
     return 0;
 }
+
+/*
+        OUTPUT :
+        -------------------------- 
+        1.Infix to Postfix
+        2.Prefix to Infix
+        3.PostFix Evaluation
+        0.Exit
+        -------------------------- 
+        Enter ur Choice :
+        1
+        Enter Infix Expression
+        A+B*C-(X/Y^Z)+P
+        Ur PostFix Expression is:
+        ABC*+XYZ^/-P+
+        -------------------------- 
+        1.Infix to Postfix
+        2.Prefix to Infix
+        3.PostFix Evaluation
+        0.Exit
+        -------------------------- 
+        Enter ur Choice :
+        2
+        Enter Prefix Expression
+        +*ABC
+        Ur Infix Expression is:
+        ((A*B)+C)
+        -------------------------- 
+        1.Infix to Postfix
+        2.Prefix to Infix
+        3.PostFix Evaluation
+        0.Exit
+        -------------------------- 
+        Enter ur Choice :
+        3
+        Enter Postfix Expression
+        23*6+7*5-
+        Ur PostFix Evalution is:
+        79
+        -------------------------- 
+        1.Infix to Postfix
+        2.Prefix to Infix
+        3.PostFix Evaluation
+        0.Exit
+        -------------------------- 
+        Enter ur Choice :
+        3
+        Enter Postfix Expression
+        39*7+
+        Ur PostFix Evalution is:
+        34
+        -------------------------- 
+        1.Infix to Postfix
+        2.Prefix to Infix
+        3.PostFix Evaluation
+        0.Exit
+        -------------------------- 
+        Enter ur Choice :
+        0
+        Invalid Choice !
+*/
